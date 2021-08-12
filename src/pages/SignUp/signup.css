@@ -1,0 +1,85 @@
+html {
+  background: #134E5E;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #71B280, #134E5E);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #71B280, #134E5E); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */  
+}  
+
+.container-center {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login {
+  width: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #EFEFEF;
+}
+
+.login-area {
+  display: flex;
+  justify-content: center;
+  background-color: #EFEFEF;
+  width: 100%;
+}
+
+.login-area img {
+  padding: 20px;
+  width: 170px;
+  height: 130px;
+}
+
+form h1{
+  text-align: center;
+  margin-bottom: 0.5em;
+  color: #181c2e;
+  margin-bottom: 40 px;
+}
+
+form {
+  margin-top: 1.5em;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+}
+
+.login input {
+  margin-bottom: 15px;
+  height: 35px;
+  border: 0;
+  border-radius: 7px;
+  padding: 10px;
+  font-size: 15px;
+  background-color: #FFF;
+}
+
+form button {
+  height: 35px;
+  border: 0;
+  border-radius: 7px;
+  background-color: #181c2e;
+  color: #FFF;
+  font-size: 1.3em;
+  cursor: pointer;
+}
+
+.login a {
+  margin: 1.5em 0;
+  color: #000;
+  cursor: pointer;  
+}
+
+.login-senha {
+  display: flex;    
+}
+
+.login-senha a {
+  margin-inline: 30px;
+  text-decoration: none;
+  font-size: 18px;
+  cursor: pointer;
+}
