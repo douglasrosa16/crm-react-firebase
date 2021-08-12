@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useContext} from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../contexts/authContext';
 import './signup.css';
 
 import logo from '../../assets/unisystem.png';
@@ -8,11 +9,14 @@ function SignUp() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [nome, setNome] = useState('');
-
+  const { signUp } = useContext(AuthContext);
 
   function handleSubmit(e){
     e.preventDefault();
-    alert('Clicou')
+    
+    if(nome && email && password){
+      signUp(email, password, nome);
+    }
   }
 
   return (

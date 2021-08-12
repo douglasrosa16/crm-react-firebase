@@ -29,9 +29,48 @@ export default function AuthProvider({children}){
     loadStorage();
   }, []);
 
+  async function signUp(email, password, nome){
+    setLoadingAuth(true);
+    await firebase.auth().createUserWithEmailAndPassword(email, password)
+    .then(async (value)=>{
+      let uid = value.user.uid;
+      //Cadastrar usuário no banco
+      await firebase.firestore().collection('users')
+      .doc(uid).set({
+        nome: nome,
+        avatarUrl: null,
+      })
+      .then(() => {
+        let data = {
+          uid: uid,
+          nome: nome,
+          email: value.user.email,
+          avatarUrl: null
+        };
+        setUser(data);
+        storageUser(data);
+        setLoadingAuth(false);
+      })
+    })
+    .catch((error) => {
+      console.log('Ocorreu um erro:'+error);
+      setLoadingAuth(false);
+    })
+  }
+
+  function storageUser(data){
+    localStorage.setItem('@crmuser',JSON.stringify(data))
+  }
+
+  async function signOut(){
+    await firebase.auth.signOut();
+    localStorage.removeItem('@crmuser');
+    setUser(null);
+  }
+
   return (
                                  //Converte para booleano
-    <AuthContext.Provider value={{ signed: !!user, user, loading }}>
+    <AuthContext.Provider value={{ signed: !!user, user, loading, signUp, signOut }}>
       {children}
     </AuthContext.Provider>
   )
