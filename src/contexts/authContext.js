@@ -1,6 +1,8 @@
 import { createContext, useState, useEffect } from 'react';
 import firebase from '../services/firebaseConnection';
 
+import { toast } from 'react-toastify';
+
 export const AuthContext = createContext({});
 
 export default function AuthProvider({children}){
@@ -29,6 +31,33 @@ export default function AuthProvider({children}){
     loadStorage();
   }, []);
 
+  async function signIn(email, password){
+    setLoadingAuth(true);
+
+    await firebase.auth().signInWithEmailAndPassword(email, password)
+    .then(async (value) => {
+      let uid = value.user.uid;
+
+      const userProfile = await firebase.firestore().collection('users')
+      .doc(uid).get();
+      let data = {
+        uid: uid,
+        nome: userProfile.data().nome,
+        avatarUrl: userProfile.data().avatarUrl,
+        email: value.user.email
+      };
+      setUser(data);
+      storageUser(data);
+      setLoadingAuth(false);
+      toast.success('Bem vindo a plataforma!')      
+    })
+    .catch((error) => {
+      toast.error('Algo deu errado')
+      console.log(error);
+      setLoadingAuth(false);
+    })
+  }
+
   async function signUp(email, password, nome){
     setLoadingAuth(true);
     await firebase.auth().createUserWithEmailAndPassword(email, password)
@@ -50,9 +79,11 @@ export default function AuthProvider({children}){
         setUser(data);
         storageUser(data);
         setLoadingAuth(false);
+        toast.success('Bem vindo a plataforma!')
       })
     })
     .catch((error) => {
+      toast.error('Algo deu errado!')
       console.log('Ocorreu um erro:'+error);
       setLoadingAuth(false);
     })
@@ -70,7 +101,7 @@ export default function AuthProvider({children}){
 
   return (
                                  //Converte para booleano
-    <AuthContext.Provider value={{ signed: !!user, user, loading, signUp, signOut }}>
+    <AuthContext.Provider value={{ signed: !!user, user, loading, signUp, signOut, signIn, loadingAuth }}>
       {children}
     </AuthContext.Provider>
   )
