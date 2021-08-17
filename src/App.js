@@ -1,17 +1,17 @@
+
+
 import 'react-toastify/dist/ReactToastify.css';
 import { BrowserRouter } from 'react-router-dom';
-import AuthProvider from './contexts/authContext';
+import AuthProvider from './contexts/auth';
 import Routes from './routes';
 import { ToastContainer } from 'react-toastify';
 
-
 function App() {
   return (
-    //Todas as rotas estão dentro do AuthProvider
-    <AuthProvider> 
+    <AuthProvider>
       <BrowserRouter>
         <ToastContainer autoClose={3000} />
-        <Routes />
+        <Routes/>
       </BrowserRouter>
     </AuthProvider>
   );

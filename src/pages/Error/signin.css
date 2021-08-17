@@ -1,9 +1,9 @@
-html {
+/*html {
   background: #134E5E;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to left, #71B280, #134E5E);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to left, #71B280, #134E5E); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */  
-}  
-
+  /*background: -webkit-linear-gradient(to left, #71B280, #134E5E);  /* Chrome 10-25, Safari 5.1-6 */
+  /*background: linear-gradient(to left, #71B280, #134E5E); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */  
+/*}  
+*/
 .container-center {
   height: 100%;
   display: flex;
@@ -40,7 +40,6 @@ h1{
   color: #181c2e;
   margin-bottom: 40 px;
 }
-
 
 .login a {
   margin: 1.5em 0;

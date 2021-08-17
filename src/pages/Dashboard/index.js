@@ -1,20 +1,17 @@
-import { useContext } from 'react';
 
-import { AuthContext } from '../../contexts/authContext';
+import { useContext } from 'react';
+import { AuthContext } from '../../contexts/auth';
 
 import Header from '../../components/Header';
 
 export default function Dashboard(){
-
   const { signOut } = useContext(AuthContext);
 
-  return (
+  return(
     <div>
-      <Header />
-      <h1>Página de Dashboard</h1>
-      <button onClick={() => signOut}>Sair</button>
+      <Header/>
+
+      <h1>PAGINA DASHBOARD</h1>
     </div>
   )
 }
-
-//Aula 94

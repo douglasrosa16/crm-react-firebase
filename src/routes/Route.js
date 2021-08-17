@@ -1,37 +1,39 @@
+
+
 import { useContext } from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import { AuthContext } from '../contexts/authContext';
-//AULA 86
+import { AuthContext } from '../contexts/auth';
 
 export default function RouteWrapper({
   component: Component,
   isPrivate,
   ...rest
 }){
-
   const { signed, loading } = useContext(AuthContext);
 
-  //Se estiver carregando
+
+
   if(loading){
-    console.log('entrou')
-    return (
-      <div>Carregando</div>
+    return(
+      <div></div>
     )
   }
 
-  //Se não está logado e a rota é privada
   if(!signed && isPrivate){
     return <Redirect to="/" />
   }
 
   if(signed && !isPrivate){
-    return <Redirect to="dashboard" />
+    return <Redirect to="/dashboard" />
   }
 
-  return (
-    <Route 
+
+  return(
+    <Route
       {...rest}
-      render={props => <Component {...props} />}
+      render={ props => (
+        <Component {...props} />
+      )}
     />
   )
 }
